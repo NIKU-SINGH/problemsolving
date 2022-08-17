@@ -66,17 +66,27 @@ class LinkedList{
                 temp = temp->next;
             }
     }
-    void reverse(){
-        Node *current,*prev,*next;
-        current = head;
-        prev = NULL;
-        while(current != NULL){
-            next = current->next;
-            current->next = prev;
-            prev = current;
-            current = next;
+    // void reverse(){
+    //     Node *current,*prev,*next;
+    //     current = head;
+    //     prev = NULL;
+    //     while(current != NULL){
+    //         next = current->next;
+    //         current->next = prev;
+    //         prev = current;
+    //         current = next;
+    //     }
+    //     head = prev;
+    // }
+    void reverse(Node *list){
+        if(list->next==NULL){
+            head = list;
+            return;
         }
-        head = prev;
+        Node * nptr = list->next;
+        nptr->next = list;
+        list->next = NULL;
+
     }
 };
 

@@ -15,45 +15,58 @@ class LinkedList
     public:
     void insertAtTail(int value){
         Node *nptr = new Node;
-        while()
-        nptr->value = value;
-        if( head == NULL && tail == NULL ){
-            head = tail = nptr;
+         if(tail == NULL && head == NULL){
+            tail = head = nptr;
+            nptr->value = value;
             nptr->next = NULL;
             nptr->prev = NULL;
         }
-        else{
-            nptr->prev=tail;
-            nptr->next=NULL;
-            tail = nptr;
-        }   
+        nptr->value = value;
+        nptr->next = tail;
+        nptr->prev= NULL;   
+        tail = nptr;
     }
 
     void insertAtHead(int value){
         Node *nptr = new Node;
-        nptr->value = value;
-        if( head == NULL && tail == NULL ){
-            head = tail = nptr;
+        if(tail == NULL && head == NULL){
+            tail = head = nptr;
+            nptr->value = value;
             nptr->next = NULL;
             nptr->prev = NULL;
-        }else {
-            nptr->next = head;
-            nptr->prev=NULL;
-            head = nptr;
         }
+        else{
+              nptr->value = value;
+              nptr->next = NULL;
+              nptr->prev = head;
+              head = nptr;
+        }
+      
     }
 
-    void display(){
-        if(head == NULL)
+    void displayFromHead(){
+        Node *ptr = head;
+        if(ptr == NULL)
             cout<<"Linked list is empty"<<endl;
         else{
-            Node *temp = head;
-            while(temp != NULL){
-                cout<<temp->value<<"->";
-                temp = temp->next;
+            while(ptr != NULL){
+                cout<<ptr->value<<"->";
+                ptr = ptr->next;
             }
         }
     }
+    void displayFromTail(){
+        Node *ptr = tail;
+        if(ptr == NULL)
+            cout<<"Linked list is empty"<<endl;
+        else{
+            while(ptr != NULL){
+                cout<<ptr->value<<"->";
+                ptr = ptr->next;
+            }
+        }
+    }
+
 };
 int main(){
    
@@ -64,8 +77,9 @@ int main(){
         cout<<"\n Enter 1 for the Insert at Tail:";
         cout<<"\n Enter 2 for the Insert at Head:";
         cout<<"\n Enter 3 for the Insert at at any position:";
-        cout<<"\n Enter 4 to display:";
-        cout<<"\n Enter 5 to quit:";
+        cout<<"\n Enter 4 to display from head:";
+        cout<<"\n Enter 5 to display from tail:";
+        cout<<"\n Enter 6 to quit:";
         cin>>choose;
 
         switch(choose){
@@ -86,8 +100,13 @@ int main(){
 
             }
             case 4 :{
-                cout<<" thhe value of linked list are:\n";
-                list.display();
+                cout<<" hhe value of linked list from head are:\n";
+                list.displayFromHead();
+                break;
+            }
+            case 5 :{
+                cout<<" thhe value of linked list from tail are:\n";
+                list.displayFromTail();
                 break;
             }
             default: {
@@ -95,7 +114,7 @@ int main(){
             }
 
         }
-   }while(choose <5);
+   }while(choose <6);
 
     return 0;
 }
